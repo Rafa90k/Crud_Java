@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Usuarios</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Gerenciar Usuario</h2></div>
+    <div class="m-3">
+        <a class="h4" th:href="@{/users/new}">Adicionar Novo Usuario</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+      [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="bg-dark text-white">
+             <tr>
+                 <th>Id</th>
+                 <th>E-mail</th>
+                 <th>Primeiro Nome</th>
+                 <th>Sobrenome</th>
+                 <th>Habilitado</th>
+                 <th></th>
+             </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user : ${listUsers}">
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.fistName}]]</td>
+                    <td>[[${user.lastName}]]</td>
+                    <td>[[${user.enabled}]]</td>
+                    <td>
+                        <a class="h4 m-3" th:href="@{'/users/edit' + ${user.id}}">Editar</a>
+                        <a class="h4 text-danger" th:href="@{'/users/delete' + ${user.id}} "> Deletar</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+</body>
+</html>
